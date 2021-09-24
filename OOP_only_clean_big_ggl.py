@@ -258,12 +258,16 @@ def get_frames(video_dir):
                                 player_name_dic[player_name] += 1
 
                                 add_time = 0
+                                add_number = ''
                                 for number_one in number_list:
+                                    if number_one == add_number:
+                                        continue
                                     if number_one == '90':
                                         add_time = 1
-                                        add_score_time_list = re.findall("90\'?\+\d\'?", lline.strr)
+                                        add_score_time_list = re.findall("\+\d\'?", lline.strr)
                                         if add_score_time_list:
-                                            score_time = add_score_time_list[0]
+                                            add_number = add_score_time_list[0][1]
+                                            score_time = '90+' + add_number
                                             big_candidate[player_name].add(score_time)
                                             score_time_dic[score_time] += 1
                                             big_flag = True
