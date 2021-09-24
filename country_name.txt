@@ -1,0 +1,272 @@
+China
+India
+United States
+Indonesia
+Pakistan
+Brazil
+Nigeria
+Bangladesh
+Russia
+Japan
+Mexico
+Ethiopia
+Philippines
+Egypt
+Vietnam
+Democratic Republic of the Congo
+Germany
+Turkey
+Iran
+Thailand
+France
+United Kingdom
+Italy
+South Africa
+Tanzania
+Myanmar
+South Korea
+Kenya
+Colombia
+Spain
+Ukraine
+Argentina
+Uganda
+Algeria
+Sudan
+Iraq
+Poland
+Afghanistan
+Canada
+Morocco
+Saudi Arabia
+Uzbekistan
+Peru
+Malaysia
+Angola
+Ghana
+Mozambique
+Venezuela
+Yemen
+Nepal
+Madagascar
+North Korea
+Cameroon
+Ivory Coast
+Australia
+Taiwan
+Niger
+Sri Coast
+Burkina Faso
+Romania
+Mali
+Chile
+Kazakhstan
+Malawi
+Zambia
+Guatemala
+Netherlands
+Ecuador
+Syria
+Cambodia
+Senegal
+Chad
+Somalia
+Zimbabwe
+Guinea
+Rwanda
+Tunisia
+Benin
+Belgium
+Bolivia
+Cuba
+Burundi
+Haiti
+Serbia and Montenegro
+Greece
+Dominican Republic
+Czechia
+Portugal
+Sweden
+Jordan
+Azerbaijan
+Hungary
+United Arab Emirates
+Honduras
+Belarus
+Tajikistan
+Israel
+Austria
+Papua New Guinea
+Switzerland
+South Sudan
+Togo
+Sierra Leone
+Hong Kong
+Laos
+Bulgaria
+Serbia
+Paraguay
+Lebanon
+Libya
+Nicaragua
+El Salvador
+Kyrgyzstan
+Turkmenistan
+Denmark
+Singapore
+Finland
+Slovakia
+Norway
+Republic of the Congo
+Costa
+New
+Ireland
+Oman
+Liberia
+Central African Republic
+Palestinian Territory
+Mauritania
+Panama
+Kuwait
+Croatia
+Georgia
+Moldova
+Uruguay
+Bosnia and Herzegovina
+Puerto Rico
+Mongolia
+Armenia
+Jamaica
+Albania
+Lithuania
+Qatar
+Namibia
+Gambia
+Botswana
+Gabon
+Lesotho
+North Macedonia
+Slovenia
+Latvia
+Guinea-Bissau
+Kosovo
+Bahrain
+Trinidad and Tobago
+Estonia Guinea
+Equatorial
+Timor Leste
+Mauritius
+Cyprus
+Eswatini
+Djibouti
+Fiji
+Comoros
+Guyana
+Reunion
+Bhutan
+Solomon Islands
+Macao
+Montenegro
+Luxembourg
+Suriname
+Cabo Verde
+Maldives
+Malta
+Guadeloupe
+Martinique
+Brunei
+Bahamas
+Belize
+Iceland
+Netherlands Antilles
+Vanuatu
+Barbados
+New Caledonia
+French Polynesia
+Western Sahara
+Sao Tome and Principe
+Samoa
+French Guiana
+Saint Lucia
+Guam
+Curacao
+Mayotte
+Kiribati
+Micronesia
+Grenada
+Saint Vincent and the Grenadines
+U.S. Virgin Islands
+Aruba
+Tonga
+Seychelles
+Antigua and Barbuda
+Jersey
+Isle of Man
+Andorra
+Dominica
+Guernsey
+Cayman Islands
+Bermuda
+Marshall Islands
+Northern Mariana Islands
+Greenland
+American Samoa
+Saint Kitts and Nevis
+Faroe Islands
+Sint Maarten
+Monaco
+Liechtenstein
+Turks and Caicos Islands
+Saint Martin
+San Marino
+Gibraltar
+British Virgin Islands
+Aland Islands
+Cook Islands
+Bonaire, Saint Eustatius and Saba
+Palau
+Wallis and Futuna
+Anguilla
+Nauru
+Tuvalu
+Montserrat
+Saintt Barthelemy
+Saint Helena
+Saint Pierre and Miquelon
+British Indian Ocean Territory
+Falkland Islands
+Svalbard and Jan Mayen
+Niue
+Norfolk Island
+Christmas Island
+Tokelau
+Vatican
+Cocos Islands
+French Southern Territories
+Pitcairn
+South Georgia and the South Sandwich Islands
+Antarctica
+Bouvet Island
+Eritrea	Asmara
+Heard Island and McDonald Islands
+United States Minor Outlying Islands
+Manchester U
+Arsenal
+Liverpool
+Leeds U
+Chelsea
+Everton
+Tottenham H
+Newcastle
+Sunderland
+Charlton Athletic
+Aston Villa
+West Ham
+Manchester C
+Middlesbrough
+Southampton
+Blackburn
+Fulham
+Bolton
+West Bromwich
+Birmingham

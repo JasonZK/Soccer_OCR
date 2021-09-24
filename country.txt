@@ -1,0 +1,252 @@
+China	Beijing	9,596,960 km²	1,392,730,000
+India	New Delhi	3,287,590 km²	1,352,617,328
+United States	Washington	9,629,091 km²	327,167,434
+Indonesia	Jakarta	1,919,440 km²	267,663,435
+Pakistan	Islamabad	803,940 km²	212,215,030
+Brazil	Brasilia	8,511,965 km²	209,469,333
+Nigeria	Abuja	923,768 km²	195,874,740
+Bangladesh	Dhaka	144,000 km²	161,356,039
+Russia	Moscow	17,100,000 km²	144,478,050
+Japan	Tokyo	377,835 km²	126,529,100
+Mexico	Mexico City	1,972,550 km²	126,190,788
+Ethiopia	Addis Ababa	1,127,127 km²	109,224,559
+Philippines	Manila	300,000 km²	106,651,922
+Egypt	Cairo	1,001,450 km²	98,423,595
+Vietnam	Hanoi	329,560 km²	95,540,395
+Democratic Republic of the Congo	Kinshasa	2,345,410 km²	84,068,091
+Germany	Berlin	357,021 km²	82,927,922
+Turkey	Ankara	780,580 km²	82,319,724
+Iran	Tehran	1,648,000 km²	81,800,269
+Thailand	Bangkok	514,000 km²	69,428,524
+France	Paris	547,030 km²	66,987,244
+United Kingdom	London	244,820 km²	66,488,991
+Italy	Rome	301,230 km²	60,431,283
+South Africa	Pretoria	1,219,912 km²	57,779,622
+Tanzania	Dodoma	945,087 km²	56,318,348
+Myanmar	Nay Pyi Taw	678,500 km²	53,708,395
+South Korea	Seoul	98,480 km²	51,635,256
+Kenya	Nairobi	582,650 km²	51,393,010
+Colombia	Bogota	1,138,910 km²	49,648,685
+Spain	Madrid	504,782 km²	46,723,749
+Ukraine	Kyiv	603,700 km²	44,622,516
+Argentina	Buenos Aires	2,766,890 km²	44,494,502
+Uganda	Kampala	236,040 km²	42,723,139
+Algeria	Algiers	2,381,740 km²	42,228,429
+Sudan	Khartoum	1,861,484 km²	41,801,533
+Iraq	Baghdad	437,072 km²	38,433,600
+Poland	Warsaw	312,685 km²	37,978,548
+Afghanistan	Kabul	647,500 km²	37,172,386
+Canada	Ottawa	9,984,670 km²	37,058,856
+Morocco	Rabat	446,550 km²	36,029,138
+Saudi Arabia	Riyadh	1,960,582 km²	33,699,947
+Uzbekistan	Tashkent	447,400 km²	32,955,400
+Peru	Lima	1,285,220 km²	31,989,256
+Malaysia	Kuala Lumpur	329,750 km²	31,528,585
+Angola	Luanda	1,246,700 km²	30,809,762
+Ghana	Accra	239,460 km²	29,767,108
+Mozambique	Maputo	801,590 km²	29,495,962
+Venezuela	Caracas	912,050 km²	28,870,195
+Yemen	Sanaa	527,970 km²	28,498,687
+Nepal	Kathmandu	140,800 km²	28,087,871
+Madagascar	Antananarivo	587,040 km²	26,262,368
+North Korea	Pyongyang	120,540 km²	25,549,819
+Cameroon	Yaounde	475,440 km²	25,216,237
+Ivory Coast	Yamoussoukro	322,460 km²	25,069,229
+Australia	Canberra	7,686,850 km²	24,992,369
+Taiwan	Taipei	35,980 km²	22,894,384
+Niger	Niamey	1,267,000 km²	22,442,948
+Sri Coast	Colombo	65,610 km²	21,670,000
+Burkina Faso	Ouagadougou	274,200 km²	19,751,535
+Romania	Bucharest	237,500 km²	19,473,936
+Mali	Bamako	1,240,000 km²	19,077,690
+Chile	Santiago	756,950 km²	18,729,160
+Kazakhstan	Nur-Sultan	2,717,300 km²	18,276,499
+Malawi	Lilongwe	118,480 km²	17,563,749
+Zambia	Lusaka	752,614 km²	17,351,822
+Guatemala	Guatemala City	108,890 km²	17,247,807
+Netherlands	Amsterdam	41,526 km²	17,231,017
+Ecuador	Quito	283,560 km²	17,084,357
+Syria	Damascus	185,180 km²	16,906,283
+Cambodia	Phnom Penh	181,040 km²	16,249,798
+Senegal	Dakar	196,190 km²	15,854,360
+Chad	N'Djamena	1,284,000 km²	15,477,751
+Somalia	Mogadishu	637,657 km²	15,008,154
+Zimbabwe	Harare	390,580 km²	14,439,018
+Guinea	Conakry	245,857 km²	12,414,318
+Rwanda	Kigali	26,338 km²	12,301,939
+Tunisia	Tunis	163,610 km²	11,565,204
+Benin	Porto-Novo	112,620 km²	11,485,048
+Belgium	Brussels	30,510 km²	11,422,068
+Bolivia	Sucre	1,098,580 km²	11,353,142
+Cuba	Havana	110,860 km²	11,338,138
+Burundi	Gitega	27,830 km²	11,175,378
+Haiti	Port-au-Prince	27,750 km²	11,123,176
+Serbia and Montenegro	Belgrade	102,350 km²	10,829,175
+Greece	Athens	131,940 km²	10,727,668
+Dominican Republic	Santo Domingo	48,730 km²	10,627,165
+Czechia	Prague	78,866 km²	10,625,695
+Portugal	Lisbon	92,391 km²	10,281,762
+Sweden	Stockholm	449,964 km²	10,183,175
+Jordan	Amman	92,300 km²	9,956,011
+Azerbaijan	Baku	86,600 km²	9,942,334
+Hungary	Budapest	93,030 km²	9,768,785
+United Arab Emirates	Abu Dhabi	82,880 km²	9,630,959
+Honduras	Tegucigalpa	112,090 km²	9,587,522
+Belarus	Minsk	207,600 km²	9,485,386
+Tajikistan	Dushanbe	143,100 km²	9,100,837
+Israel	Jerusalem	20,770 km²	8,883,800
+Austria	Vienna	83,858 km²	8,847,037
+Papua New Guinea	Port Moresby	462,840 km²	8,606,316
+Switzerland	Bern	41,290 km²	8,516,543
+South Sudan	Juba	644,329 km²	8,260,490
+Togo	Lome	56,785 km²	7,889,094
+Sierra Leone	Freetown	71,740 km²	7,650,154
+Hong Kong	Hong Kong	1,092 km²	7,451,000
+Laos	Vientiane	236,800 km²	7,061,507
+Bulgaria	Sofia	110,910 km²	7,000,039
+Serbia	Belgrade	88,361 km²	6,982,084
+Paraguay	Asuncion	406,750 km²	6,956,071
+Lebanon	Beirut	10,400 km²	6,848,925
+Libya	Tripoli	1,759,540 km²	6,678,567
+Nicaragua	Managua	129,494 km²	6,465,513
+El Salvador	San Salvador	21,040 km²	6,420,744
+Kyrgyzstan	Bishkek	198,500 km²	6,315,800
+Turkmenistan	Ashgabat	488,100 km²	5,850,908
+Denmark	Copenhagen	43,094 km²	5,797,446
+Singapore	Singapore	693 km²	5,638,676
+Finland	Helsinki	337,030 km²	5,518,050
+Slovakia	Bratislava	48,845 km²	5,447,011
+Norway	Oslo	324,220 km²	5,314,336
+Republic of the Congo	Brazzaville	342,000 km²	5,244,363
+Costa Rica	San Jose	51,100 km²	4,999,441
+New Zealand	Wellington	268,680 km²	4,885,500
+Ireland	Dublin	70,280 km²	4,853,506
+Oman	Muscat	212,460 km²	4,829,483
+Liberia	Monrovia	111,370 km²	4,818,977
+Central African Republic	Bangui	622,984 km²	4,666,377
+Palestinian Territory	East Jerusalem	5,970 km²	4,569,087
+Mauritania	Nouakchott	1,030,700 km²	4,403,319
+Panama	Panama City	78,200 km²	4,176,873
+Kuwait	Kuwait City	17,820 km²	4,137,309
+Croatia	Zagreb	56,542 km²	4,089,400
+Georgia	Tbilisi	69,700 km²	3,731,000
+Moldova	Chisinau	33,843 km²	3,545,883
+Uruguay	Montevideo	176,220 km²	3,449,299
+Bosnia and Herzegovina	Sarajevo	51,129 km²	3,323,929
+Puerto Rico	San Juan	9,104 km²	3,195,153
+Mongolia	Ulaanbaatar	1,565,000 km²	3,170,208
+Armenia	Yerevan	29,800 km²	2,951,776
+Jamaica	Kingston	10,991 km²	2,934,855
+Albania	Tirana	28,748 km²	2,866,376
+Lithuania	Vilnius	65,200 km²	2,789,533
+Qatar	Doha	11,437 km²	2,781,677
+Namibia	Windhoek	825,418 km²	2,448,255
+Gambia	Banjul	11,300 km²	2,280,102
+Botswana	Gaborone	600,370 km²	2,254,126
+Gabon	Libreville	267,667 km²	2,119,275
+Lesotho	Maseru	30,355 km²	2,108,132
+North Macedonia	Skopje	25,333 km²	2,082,958
+Slovenia	Ljubljana	20,273 km²	2,067,372
+Latvia	Riga	64,589 km²	1,926,542
+Guinea-Bissau	Bissau	36,120 km²	1,874,309
+Kosovo	Pristina	10,908 km²	1,845,300
+Bahrain	Manama	665 km²	1,569,439
+Trinidad and Tobago	Port of Spain	5,128 km²	1,389,858
+Estonia	Tallinn	45,226 km²	1,320,884
+Equatorial Guinea	Malabo	28,051 km²	1,308,974
+Timor Leste	Dili	15,007 km²	1,267,972
+Mauritius	Port Louis	2,040 km²	1,265,303
+Cyprus	Nicosia	9,250 km²	1,189,265
+Eswatini	Mbabane	17,363 km²	1,136,191
+Djibouti	Djibouti	23,000 km²	958,920
+Fiji	Suva	18,270 km²	883,483
+Comoros	Moroni	2,170 km²	832,322
+Guyana	Georgetown	214,970 km²	779,004
+Reunion	Saint-Denis	2,517 km²	776,948
+Bhutan	Thimphu	47,000 km²	754,394
+Solomon Islands	Honiara	28,450 km²	652,858
+Macao	Macao	254 km²	631,636
+Montenegro	Podgorica	14,026 km²	622,345
+Luxembourg	Luxembourg	2,586 km²	607,728
+Suriname	Paramaribo	163,270 km²	575,991
+Cabo Verde	Praia	4,033 km²	543,767
+Maldives	Male	300 km²	515,696
+Malta	Valletta	316 km²	483,530
+Guadeloupe	Basse-Terre	1,780 km²	443,000
+Martinique	Fort-de-France	1,100 km²	432,900
+Brunei	Bandar Seri Begawan	5,770 km²	428,962
+Bahamas	Nassau	13,940 km²	385,640
+Belize	Belmopan	22,966 km²	383,071
+Iceland	Reykjavik	103,000 km²	353,574
+Netherlands Antilles	Willemstad	960 km²	300,000
+Vanuatu	Port Vila	12,200 km²	292,680
+Barbados	Bridgetown	431 km²	286,641
+New Caledonia	Noumea	19,060 km²	284,060
+French Polynesia	Papeete	4,167 km²	277,679
+Western Sahara	El-Aaiun	266,000 km²	273,008
+Sao Tome and Principe	Sao Tome	1,001 km²	197,700
+Samoa	Apia	2,944 km²	196,130
+French Guiana	Cayenne	91,000 km²	195,506
+Saint Lucia	Castries	616 km²	181,889
+Guam	Hagatna	549 km²	165,768
+Curacao	Willemstad	444 km²	159,849
+Mayotte	Mamoudzou	374 km²	159,042
+Kiribati	Tarawa	811 km²	115,847
+Micronesia	Palikir	702 km²	112,640
+Grenada	St. George's	344 km²	111,454
+Saint Vincent and the Grenadines	Kingstown	389 km²	110,211
+U.S. Virgin Islands	Charlotte Amalie	352 km²	106,977
+Aruba	Oranjestad	193 km²	105,845
+Tonga	Nuku'alofa	748 km²	103,197
+Seychelles	Victoria	455 km²	96,762
+Antigua and Barbuda	St. John's	443 km²	96,286
+Jersey	Saint Helier	116 km²	90,812
+Isle of Man	Douglas	572 km²	84,077
+Andorra	Andorra la Vella	468 km²	77,006
+Dominica	Roseau	754 km²	71,625
+Guernsey	St Peter Port	78 km²	65,228
+Cayman Islands	George Town	262 km²	64,174
+Bermuda	Hamilton	53 km²	63,968
+Marshall Islands	Majuro	181 km²	58,413
+Northern Mariana Islands	Saipan	477 km²	56,882
+Greenland	Nuuk	2,166,086 km²	56,025
+American Samoa	Pago Pago	199 km²	55,465
+Saint Kitts and Nevis	Basseterre	261 km²	52,441
+Faroe Islands	Torshavn	1,399 km²	48,497
+Sint Maarten	Philipsburg	21 km²	40,654
+Monaco	Monaco	2 km²	38,682
+Liechtenstein	Vaduz	160 km²	37,910
+Turks and Caicos Islands	Cockburn Town	430 km²	37,665
+Saint Martin	Marigot	53 km²	37,264
+San Marino	San Marino	61 km²	33,785
+Gibraltar	Gibraltar	7 km²	33,718
+British Virgin Islands	Road Town	153 km²	29,802
+Aland Islands	Mariehamn	1,580 km²	26,711
+Cook Islands	Avarua	240 km²	21,388
+Bonaire, Saint Eustatius and Saba		328 km²	18,012
+Palau	Melekeok	458 km²	17,907
+Wallis and Futuna	Mata Utu	274 km²	16,025
+Anguilla	The Valley	102 km²	13,254
+Nauru	Yaren	21 km²	12,704
+Tuvalu	Funafuti	26 km²	11,508
+Montserrat	Plymouth	102 km²	9,341
+Saint Barthelemy	Gustavia	21 km²	8,450
+Saint Helena	Jamestown	410 km²	7,460
+Saint Pierre and Miquelon	Saint-Pierre	242 km²	7,012
+British Indian Ocean Territory	Diego Garcia	60 km²	4,000
+Falkland Islands	Stanley	12,173 km²	2,638
+Svalbard and Jan Mayen	Longyearbyen	62,049 km²	2,550
+Niue	Alofi	260 km²	2,166
+Norfolk Island	Kingston	35 km²	1,828
+Christmas Island	Flying Fish Cove	135 km²	1,500
+Tokelau		10 km²	1,466
+Vatican	Vatican City	0 km²	921
+Cocos Islands	West Island	14 km²	628
+French Southern Territories	Port-aux-Francais	7,829 km²	140
+Pitcairn	Adamstown	47 km²	46
+South Georgia and the South Sandwich Islands	Grytviken	3,903 km²	30
+Antarctica		14,000,000 km²	0
+Bouvet Island		49 km²	0
+Eritrea	Asmara	121,320 km²	0
+Heard Island and McDonald Islands		412 km²	0
+United States Minor Outlying Islands		0 km²	0
