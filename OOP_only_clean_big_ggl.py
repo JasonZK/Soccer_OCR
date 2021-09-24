@@ -231,29 +231,40 @@ def get_frames(video_dir):
 
                     if big_result:
                         # 首先检测是否存在两个队名
+                        team_candidates_list = []
+                        two_teams = False
                         for ii, [strr, ration] in enumerate(big_temp_result[1]):
                             x1_big = big_temp_result[0][ii][0][0]
                             x2_big = big_temp_result[0][ii][2][0]
                             y1_big = big_temp_result[0][ii][0][1]
                             y2_big = big_temp_result[0][ii][3][1]
                             team1 = process.extractOne(strr, team_name, scorer=fuzz.token_set_ratio,
-                                                       score_cutoff=70)
+                                                       score_cutoff=80)
                             if team1:
-                                team_nums += 1
-                                if x1_big > big_w_index:
-                                    right_team = team1[0]
-                                if x2_big < big_w_index:
-                                    left_team = team1[0]
-                                team_y1 = y1_big
-                                team_y2 = y2_big
+                                if team_candidates_list:
+                                    for team_candidate in team_candidates_list:
+                                        if abs(team_candidate[2] - (y1_big + y2_big)/2) < 3:
+                                            two_teams = True
+                                            if (x1_big + x2_big)/2 > big_w_index:
+                                                right_team = team1[0]
+                                                left_team = team_candidate[0]
+                                            if x2_big < big_w_index:
+                                                left_team = team1[0]
+                                                right_team = team_candidate[0]
+                                            team_y1 = y1_big
+                                            team_y2 = y2_big
+                                            break
+                                team_candidates_list.append([strr, (x1_big + x2_big)/2, (y1_big + y2_big)/2])
                                 continue
                             if (x1_big + x2_big)/2 < big_w_index:
                                 left_big_temp_result.append([strr, x1_big, x2_big, y1_big, y2_big])
                             else:
                                 right_big_temp_result.append([strr, x1_big, x2_big, y1_big, y2_big])
 
+
+
                         # 检测出了两个球队名，说明是大字幕，此时team_y1，team_y2都有了
-                        if team_nums == 2:
+                        if two_teams:
                             if left_big_temp_result:
                                 sorted_left_big_result = sorted(left_big_temp_result, key=lambda student: student[3])
                                 yy1 = sorted_left_big_result[0][3]
@@ -359,29 +370,47 @@ def get_frames(video_dir):
                 # names = list(Player_Time_list.keys())
                 score_times = list(score_time_dic.keys())
                 for i in range(nn):
-                    i_times = list(Player_Time_list[i].goaltime.keys())
-                    i_playername = Player_Time_list[i].playername
-                    # 如果该运动员的某个得分时间次数出现少于5，就删除这个得分时间
-                    for score_time in list(Player_Time_list[i].goaltime.keys()):
-                        if score_time_dic[score_time] < 5:
-                            Player_Time_list[i].goaltime.pop(score_time)
-                    # 如果该球员没有得分时间，就删除该球员的记录
-                    if not Player_Time_list[i].goaltime:
-                        Player_Time_list[i].use = 0
-                    # 对于其他球员
-                    for j in range(i + 1, nn):
-                        j_times = list(Player_Time_list[j].goaltime.keys())
-                        j_playername = Player_Time_list[j].playername
-                        set_temp = set(i_times) & set(j_times)
-                        if set_temp:
-                            if player_name_dic[names[i]] >= player_name_dic[names[j]]:
-                                big_candidate[names[j]] = set('0')
-                            else:
-                                big_candidate[names[i]] = set('0')
-                        elif fuzz.token_set_ratio(names[i], names[j]) >= 70:
-                            big_candidate[names[i]] = big_candidate[names[i]].union(
-                                big_candidate[names[j]])
-                            big_candidate[names[i]] = set('0')
+                    if Player_Time_list[i].use == 1:
+                        i_times = list(Player_Time_list[i].goaltime.keys())
+                        i_playername = Player_Time_list[i].playername
+                        # 如果该运动员的某个得分时间次数出现少于5，就删除这个得分时间
+                        for score_time in list(Player_Time_list[i].goaltime.keys()):
+                            if score_time_dic[score_time] < 5:
+                                Player_Time_list[i].goaltime.pop(score_time)
+                        # 如果该球员没有得分时间，就删除该球员的记录
+                        if not Player_Time_list[i].goaltime:
+                            Player_Time_list[i].use = 0
+                        # 对于其他球员
+                        for j in range(i + 1, nn):
+                            if Player_Time_list[j].use == 1:
+                                j_times = list(Player_Time_list[j].goaltime.keys())
+                                j_playername = Player_Time_list[j].playername
+                                set_temp = set(i_times) & set(j_times)
+                                if set_temp:
+                                    if player_name_dic[i_playername] >= player_name_dic[j_playername]:
+                                        Player_Time_list[j].use = 0
+                                    else:
+                                        Player_Time_list[j].use = 0
+                                elif fuzz.token_set_ratio(i_playername, j_playername) >= 70:
+                                    if player_name_dic[i_playername] >= player_name_dic[j_playername]:
+                                        Player_Time_list[i].goaltime.update(Player_Time_list[j].goaltime)
+                                        Player_Time_list[j].use = 0
+                                    else:
+                                        Player_Time_list[j].goaltime.update(Player_Time_list[i].goaltime)
+                                        Player_Time_list[i].use = 0
+                                        break
+                for i in range(nn):
+                    if Player_Time_list[i].use :
+                        name = Player_Time_list[i].playername
+                        if Player_Time_list[i].location == 'left':
+                            team = left_team
+                        else:
+                            team = right_team
+                        print("name:{}  team:{}".format(name, team))
+                        print(Player_Time_list[i].goaltime)
+
+
+
 
                 # 把big_candidate里的值（set）取交集，如果不为空，就在player_name_dic里面看谁的key次数多
                 # 次数少的key就在big_candidate中删除
