@@ -17,13 +17,11 @@ keyword1 = "goal"
 
 
 class PlayerTime:
-    def __init__(self, playername='', goaltime=None, location="", team=''):
-        if goaltime is None:
-            self.goaltime = []
+    def __init__(self, playername=''):
+        self.goaltime = defaultdict(str)
         self.playername = playername
-        self.goaltime = goaltime
-        self.location = location
-        self.team = team
+        self.location = ''
+        self.use = 1
 
 class OneLine:
     def __init__(self, y1, y2):
@@ -81,7 +79,80 @@ def get_ocr_result(videoCap, i, h_index):
             result += ' '
     return result, temp_result
 
+def check_line(result_line, LorR, player_name_dic, big_candidate, score_time_dic, i, Player_Time_list, big_flag):
+    for lline in result_line:
+        P = 0
+        OG = 0
+        score_time = '0'
+        string_list = re.findall("[A-Za-z]+", lline.strr)
+        number_list = re.findall("\d+", lline.strr)
 
+        if (not string_list) or (not number_list):
+            continue
+
+        player_name = ''
+        for string_one in string_list:
+            if string_one.upper() == 'P':
+                P = 1
+                score_time_list = re.findall("\d+\'?\(P\)", lline.strr)
+                if score_time_list:
+                    score_time = re.findall("\d+", score_time_list[0])[0]
+            elif string_one.upper() == 'OG':
+                OG = 1
+                score_time_list = re.findall("\d+\'?\(P\)", lline.strr)
+                if score_time_list:
+                    score_time = re.findall("\d+", score_time_list[0])[0]
+            elif len(string_one) > 2:
+                player_name += (string_one + ' ')
+
+        if not player_name:
+            continue
+
+        player_name_dic[player_name] += 1
+
+        one_playertime = PlayerTime(player_name)
+        one_playertime.location = LorR
+        if P:
+            one_playertime.goaltime[score_time] = 'P'
+        elif OG:
+            one_playertime.goaltime[score_time] = 'OG'
+
+        add_time = 0
+        add_number = ''
+        for number_one in number_list:
+            # 如果这个数字是90后面加的，就跳过
+            if number_one == add_number:
+                continue
+            # 如果数字是90，说明有加时
+            if number_one == '90':
+                add_time = 1
+                add_score_time_list = re.findall("\+\d\'?", lline.strr)
+                if add_score_time_list:
+                    add_number = add_score_time_list[0][1]
+                    score_time = '90+' + add_number
+                    # 如果这个进球不是P或者OG
+                    if not one_playertime.goaltime[score_time]:
+                        one_playertime.goaltime[score_time] = "add"
+                    big_candidate[player_name].add(score_time)
+                    score_time_dic[score_time] += 1
+                    big_flag = True
+            # 正常进球情况
+            elif len(number_one) < 4:
+                score_time = number_one
+                big_candidate[player_name].add(score_time)
+                # 如果这个进球不是P或者OG
+                if not one_playertime.goaltime[score_time]:
+                    one_playertime.goaltime[score_time] = "N"
+                score_time_dic[score_time] += 1
+                big_flag = True
+
+        Player_Time_list.append(one_playertime)
+        del one_playertime
+        print("check players name: {}  goal_time: {}  frame:{}".format(
+            player_name, big_candidate[player_name], i, ))
+        continue
+
+    return player_name_dic, big_candidate, score_time_dic, Player_Time_list, big_flag
 
 
 def get_frames(video_dir):
@@ -141,6 +212,7 @@ def get_frames(video_dir):
                 team_y2 = 0
                 big_flag = False
                 big_nums = 6
+                Player_Time_list = []
                 while i < frame_count:
                     # 评估候选比分
 
@@ -234,52 +306,16 @@ def get_frames(video_dir):
                                 right_line.append(locals()['right_oneline_' + str(line_index)])
                                 del locals()['right_oneline_' + str(line_index)]
 
-                            for lline in left_line + right_line:
-                                P = 0
-                                OP = 0
-                                string_list = re.findall("[A-Za-z]+", lline.strr)
-                                number_list = re.findall("\d+", lline.strr)
+                            player_name_dic, big_candidate, score_time_dic, Player_Time_list, big_flag = check_line(
+                                left_line, "left", player_name_dic, big_candidate, score_time_dic, i, Player_Time_list,
+                                big_flag)
 
-                                if (not string_list) or (not number_list):
-                                    continue
+                            player_name_dic, big_candidate, score_time_dic, Player_Time_list, big_flag = check_line(
+                                right_line, "right", player_name_dic, big_candidate, score_time_dic, i,
+                                Player_Time_list,
+                                big_flag)
 
-                                player_name = ''
-                                for string_one in string_list:
-                                    if string_one.upper() == 'P':
-                                        P = 1
-                                    elif string_one.upper() == 'OP':
-                                        OP = 1
-                                    elif len(string_one) > 2:
-                                        player_name += (string_one + ' ')
 
-                                if not player_name:
-                                    continue
-
-                                player_name_dic[player_name] += 1
-
-                                add_time = 0
-                                add_number = ''
-                                for number_one in number_list:
-                                    if number_one == add_number:
-                                        continue
-                                    if number_one == '90':
-                                        add_time = 1
-                                        add_score_time_list = re.findall("\+\d\'?", lline.strr)
-                                        if add_score_time_list:
-                                            add_number = add_score_time_list[0][1]
-                                            score_time = '90+' + add_number
-                                            big_candidate[player_name].add(score_time)
-                                            score_time_dic[score_time] += 1
-                                            big_flag = True
-                                    elif len(number_one) < 4:
-                                        score_time = number_one
-                                        big_candidate[player_name].add(score_time)
-                                        score_time_dic[score_time] += 1
-                                        big_flag = True
-
-                                print("check players name: {}  goal_time: {}  frame:{}".format(
-                                    player_name, big_candidate[player_name], i,))
-                                continue
 
                     # 如果检测出比分，则帧数+1检测下一帧，否则帧数+200
                     if goal_flag:
@@ -319,16 +355,49 @@ def get_frames(video_dir):
 
                 # 把big_candidate里的值（set）取交集，如果不为空，就在player_name_dic里面看谁的key次数多
                 # 次数少的key就在big_candidate中删除
+                nn = len(Player_Time_list)
+                # names = list(Player_Time_list.keys())
+                score_times = list(score_time_dic.keys())
+                for i in range(nn):
+                    i_times = list(Player_Time_list[i].goaltime.keys())
+                    i_playername = Player_Time_list[i].playername
+                    # 如果该运动员的某个得分时间次数出现少于5，就删除这个得分时间
+                    for score_time in list(Player_Time_list[i].goaltime.keys()):
+                        if score_time_dic[score_time] < 5:
+                            Player_Time_list[i].goaltime.pop(score_time)
+                    # 如果该球员没有得分时间，就删除该球员的记录
+                    if not Player_Time_list[i].goaltime:
+                        Player_Time_list[i].use = 0
+                    # 对于其他球员
+                    for j in range(i + 1, nn):
+                        j_times = list(Player_Time_list[j].goaltime.keys())
+                        j_playername = Player_Time_list[j].playername
+                        set_temp = set(i_times) & set(j_times)
+                        if set_temp:
+                            if player_name_dic[names[i]] >= player_name_dic[names[j]]:
+                                big_candidate[names[j]] = set('0')
+                            else:
+                                big_candidate[names[i]] = set('0')
+                        elif fuzz.token_set_ratio(names[i], names[j]) >= 70:
+                            big_candidate[names[i]] = big_candidate[names[i]].union(
+                                big_candidate[names[j]])
+                            big_candidate[names[i]] = set('0')
+
+                # 把big_candidate里的值（set）取交集，如果不为空，就在player_name_dic里面看谁的key次数多
+                # 次数少的key就在big_candidate中删除
                 nn = len(big_candidate)
                 names = list(big_candidate.keys())
                 score_times = list(score_time_dic.keys())
                 for i in range(nn):
                     if big_candidate[names[i]] != set('0'):
+                        # 如果该运动员的某个得分时间次数出现少于5，就删除这个得分时间
                         for score_time in list(big_candidate[names[i]]):
                             if score_time_dic[score_time] < 5:
                                 big_candidate[names[i]].remove(score_time)
+                        # 如果该球员没有得分时间，就删除该球员的记录
                         if big_candidate[names[i]] == set():
                             big_candidate[names[i]] = set('0')
+                        # 对于其他球员
                         for j in range(i + 1, nn):
                             if big_candidate[names[j]] != set('0'):
                                 set_temp = big_candidate[names[i]] & big_candidate[names[j]]
