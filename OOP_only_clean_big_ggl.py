@@ -38,7 +38,7 @@ def makedir(new_dir):
 
 
 EVENT_DIR = "D:/dataset/event"
-VIDEO_DIR = "D:/dataset/video_big_5"
+VIDEO_DIR = "D:/dataset/video_error"
 
 ocr = PaddleOCR(lang="en", gpu_mem=5000, det=False,
                 rec_model_dir="./inference/en_ppocr_mobile_v2.0_rec_infer/")  # 首次执行会自动下载模型文件
@@ -94,7 +94,7 @@ def check_line(result_line, LorR, player_name_dic, big_candidate, score_time_dic
         for string_one in string_list:
             if string_one.upper() == 'P':
                 P = 1
-                score_time_list = re.findall("\d+\'?\(P\)", lline.strr)
+                score_time_list = re.findall("\d+\'?\(P", lline.strr)
                 if score_time_list:
                     score_time = re.findall("\d+", score_time_list[0])[0]
             elif string_one.upper() == 'OG':
@@ -102,7 +102,7 @@ def check_line(result_line, LorR, player_name_dic, big_candidate, score_time_dic
                 score_time_list = re.findall("\d+\'?\(P\)", lline.strr)
                 if score_time_list:
                     score_time = re.findall("\d+", score_time_list[0])[0]
-            elif len(string_one) > 2:
+            else:
                 player_name += (string_one + ' ')
 
         if not player_name:
@@ -133,11 +133,16 @@ def check_line(result_line, LorR, player_name_dic, big_candidate, score_time_dic
                     # 如果这个进球不是P或者OG
                     if not one_playertime.goaltime[score_time]:
                         one_playertime.goaltime[score_time] = "add"
-                    big_candidate[player_name].add(score_time)
-                    score_time_dic[score_time] += 1
-                    big_flag = True
+                else:
+                    score_time = number_one
+                    # 如果这个进球不是P或者OG
+                    if not one_playertime.goaltime[score_time]:
+                        one_playertime.goaltime[score_time] = "N"
+                big_candidate[player_name].add(score_time)
+                score_time_dic[score_time] += 1
+                big_flag = True
             # 正常进球情况
-            elif len(number_one) < 4:
+            elif len(number_one) < 3:
                 score_time = number_one
                 big_candidate[player_name].add(score_time)
                 # 如果这个进球不是P或者OG
@@ -373,13 +378,7 @@ def get_frames(video_dir):
                     if Player_Time_list[i].use == 1:
                         i_times = list(Player_Time_list[i].goaltime.keys())
                         i_playername = Player_Time_list[i].playername
-                        # 如果该运动员的某个得分时间次数出现少于5，就删除这个得分时间
-                        for score_time in list(Player_Time_list[i].goaltime.keys()):
-                            if score_time_dic[score_time] < 5:
-                                Player_Time_list[i].goaltime.pop(score_time)
-                        # 如果该球员没有得分时间，就删除该球员的记录
-                        if not Player_Time_list[i].goaltime:
-                            Player_Time_list[i].use = 0
+
                         # 对于其他球员
                         for j in range(i + 1, nn):
                             if Player_Time_list[j].use == 1:
@@ -399,6 +398,14 @@ def get_frames(video_dir):
                                         Player_Time_list[j].goaltime.update(Player_Time_list[i].goaltime)
                                         Player_Time_list[i].use = 0
                                         break
+                        # 如果该运动员的某个得分时间次数出现少于5，就删除这个得分时间
+                        for score_time in list(Player_Time_list[i].goaltime.keys()):
+                            if score_time_dic[score_time] < 5:
+                                Player_Time_list[i].goaltime.pop(score_time)
+                        # 如果该球员没有得分时间，就删除该球员的记录
+                        if not Player_Time_list[i].goaltime:
+                            Player_Time_list[i].use = 0
+
                 for i in range(nn):
                     if Player_Time_list[i].use :
                         name = Player_Time_list[i].playername
