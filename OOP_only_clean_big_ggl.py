@@ -20,7 +20,7 @@ class PlayerTime:
     def __init__(self, playername=''):
         self.goaltime = defaultdict(str)
         self.playername = playername
-        self.location = ''
+        self.location = 0
         self.use = 1
 
 class OneLine:
@@ -38,7 +38,7 @@ def makedir(new_dir):
 
 
 EVENT_DIR = "D:/dataset/event"
-VIDEO_DIR = "D:/dataset/video_error"
+VIDEO_DIR = "D:/dataset/video_big_5"
 
 ocr = PaddleOCR(lang="en", gpu_mem=5000, det=False,
                 rec_model_dir="./inference/en_ppocr_mobile_v2.0_rec_infer/")  # 首次执行会自动下载模型文件
@@ -99,7 +99,7 @@ def check_line(result_line, LorR, player_name_dic, big_candidate, score_time_dic
                     score_time = re.findall("\d+", score_time_list[0])[0]
             elif string_one.upper() == 'OG':
                 OG = 1
-                score_time_list = re.findall("\d+\'?\(P\)", lline.strr)
+                score_time_list = re.findall("\d+\'?\(OG", lline.strr)
                 if score_time_list:
                     score_time = re.findall("\d+", score_time_list[0])[0]
             else:
@@ -116,6 +116,7 @@ def check_line(result_line, LorR, player_name_dic, big_candidate, score_time_dic
             one_playertime.goaltime[score_time] = 'P'
         elif OG:
             one_playertime.goaltime[score_time] = 'OG'
+            one_playertime.location = -LorR
 
         add_time = 0
         add_number = ''
@@ -243,8 +244,12 @@ def get_frames(video_dir):
                             x2_big = big_temp_result[0][ii][2][0]
                             y1_big = big_temp_result[0][ii][0][1]
                             y2_big = big_temp_result[0][ii][3][1]
-                            team1 = process.extractOne(strr, team_name, scorer=fuzz.token_set_ratio,
-                                                       score_cutoff=80)
+                            # 排除在中间位置的字符串
+                            if abs((x1_big + x2_big)/2 - big_w_index) < 4:
+                                continue
+
+                            team1 = process.extractOne(strr, team_name, scorer=fuzz.ratio,
+                                                       score_cutoff=70)
                             if team1:
                                 if team_candidates_list:
                                     for team_candidate in team_candidates_list:
@@ -323,11 +328,11 @@ def get_frames(video_dir):
                                 del locals()['right_oneline_' + str(line_index)]
 
                             player_name_dic, big_candidate, score_time_dic, Player_Time_list, big_flag = check_line(
-                                left_line, "left", player_name_dic, big_candidate, score_time_dic, i, Player_Time_list,
+                                left_line, 1, player_name_dic, big_candidate, score_time_dic, i, Player_Time_list,
                                 big_flag)
 
                             player_name_dic, big_candidate, score_time_dic, Player_Time_list, big_flag = check_line(
-                                right_line, "right", player_name_dic, big_candidate, score_time_dic, i,
+                                right_line, -1, player_name_dic, big_candidate, score_time_dic, i,
                                 Player_Time_list,
                                 big_flag)
 
@@ -360,6 +365,8 @@ def get_frames(video_dir):
                         #     i = max(i+1000, frame_count-5000)
                         if i + 3000 < frame_count - 2000:
                             i += 3000
+                        elif i + 2000 > frame_count:
+                            i += 500
                         else:
                             i = max(i + 2000, frame_count - 2000)
                         big_nums = 6
@@ -389,7 +396,7 @@ def get_frames(video_dir):
                                     if player_name_dic[i_playername] >= player_name_dic[j_playername]:
                                         Player_Time_list[j].use = 0
                                     else:
-                                        Player_Time_list[j].use = 0
+                                        Player_Time_list[i].use = 0
                                 elif fuzz.token_set_ratio(i_playername, j_playername) >= 70:
                                     if player_name_dic[i_playername] >= player_name_dic[j_playername]:
                                         Player_Time_list[i].goaltime.update(Player_Time_list[j].goaltime)
@@ -405,11 +412,13 @@ def get_frames(video_dir):
                         # 如果该球员没有得分时间，就删除该球员的记录
                         if not Player_Time_list[i].goaltime:
                             Player_Time_list[i].use = 0
+                        if player_name_dic[i_playername] < 5:
+                            Player_Time_list[i].use = 0
 
                 for i in range(nn):
-                    if Player_Time_list[i].use :
+                    if Player_Time_list[i].use:
                         name = Player_Time_list[i].playername
-                        if Player_Time_list[i].location == 'left':
+                        if Player_Time_list[i].location == 1:
                             team = left_team
                         else:
                             team = right_team
