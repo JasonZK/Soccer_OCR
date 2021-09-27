@@ -38,7 +38,7 @@ def makedir(new_dir):
 
 
 EVENT_DIR = "D:/dataset/event"
-VIDEO_DIR = "D:/dataset/video_big_5"
+VIDEO_DIR = "D:/dataset/video_big_1"
 
 ocr = PaddleOCR(lang="en", gpu_mem=5000, det=False,
                 rec_model_dir="./inference/en_ppocr_mobile_v2.0_rec_infer/")  # 首次执行会自动下载模型文件
@@ -200,7 +200,10 @@ def get_frames(video_dir):
                 frame_count = videoCap.get(cv.CAP_PROP_FRAME_COUNT)
                 print("-----------------------------")
                 print("video:{}".format(video_index1[1]))
-                i = frame_count - 10000
+
+                # i = frame_count - 10000
+                i = 0
+
                 init_candidate = defaultdict(int)
                 player_name_dic = defaultdict(int)
                 score_time_dic = defaultdict(int)
@@ -363,7 +366,9 @@ def get_frames(video_dir):
                         #     i += 10000
                         # else:
                         #     i = max(i+1000, frame_count-5000)
-                        if i + 3000 < frame_count - 2000:
+                        if i + 10000 < frame_count - 4000:
+                            i += 10000
+                        elif i + 3000 < frame_count - 2000:
                             i += 3000
                         elif i + 2000 > frame_count:
                             i += 500
