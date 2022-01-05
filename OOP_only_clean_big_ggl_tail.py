@@ -23,7 +23,6 @@ class PlayerTime:
         self.location = 0
         self.use = 1
 
-
 class OneLine:
     def __init__(self, y1, y2):
         self.y1 = y1
@@ -39,7 +38,7 @@ def makedir(new_dir):
 
 
 EVENT_DIR = "D:/dataset/event"
-VIDEO_DIR = "D:/dataset/video_big_2"
+VIDEO_DIR = "D:/dataset/video_6"
 
 ocr = PaddleOCR(lang="en", gpu_mem=5000, det=False,
                 rec_model_dir="./inference/en_ppocr_mobile_v2.0_rec_infer/")  # 首次执行会自动下载模型文件
@@ -53,9 +52,6 @@ for line in f:
 
 
 # result = process.extract(a, team_name, scorer=fuzz.token_set_ratio, limit=5)
-
-def print_json(data):
-    print(json.dumps(data, sort_keys=True, indent=4, separators=(', ', ': '), ensure_ascii=False))
 
 def get_ocr_result(videoCap, i, h_index):
     result = ''
@@ -82,7 +78,6 @@ def get_ocr_result(videoCap, i, h_index):
             ocr_list.append(mystr)
             result += ' '
     return result, temp_result
-
 
 def check_line(result_line, LorR, player_name_dic, big_candidate, score_time_dic, i, Player_Time_list, big_flag):
     for lline in result_line:
@@ -172,8 +167,8 @@ def check_line(result_line, LorR, player_name_dic, big_candidate, score_time_dic
                 big_flag = True
 
         Player_Time_list.append(one_playertime)
-        print("source string: {}   check players name: {}  goal_time: {}  frame:{}  goaltime:{}".format(
-            lline.strr, player_name, big_candidate[player_name], i, one_playertime.goaltime))
+        # print("check players name: {}  goal_time: {}  frame:{}  goaltime:{}".format(
+        #     player_name, big_candidate[player_name], i, one_playertime.goaltime))
         del one_playertime
         continue
 
@@ -220,7 +215,7 @@ def get_frames(video_dir):
                 print("-----------------------------")
                 print("video:{}".format(video_index1[1]))
 
-                i = frame_count - 25000
+                i = frame_count - 20000
                 # i = 0
 
                 init_candidate = defaultdict(int)
@@ -271,7 +266,7 @@ def get_frames(video_dir):
                             y1_big = big_temp_result[0][ii][0][1]
                             y2_big = big_temp_result[0][ii][3][1]
                             # 排除在中间位置的字符串
-                            if abs((x1_big + x2_big) / 2 - big_w_index) < 4:
+                            if abs((x1_big + x2_big)/2 - big_w_index) < 4:
                                 continue
 
                             team1 = process.extractOne(strr, team_name, scorer=fuzz.ratio,
@@ -280,15 +275,15 @@ def get_frames(video_dir):
                                 if team_candidates_list:
                                     for team_candidate in team_candidates_list:
                                         # 两个检测出的队名必须满足：y坐标近似，x坐标关于中间对称
-                                        if abs(team_candidate[2] - (y1_big + y2_big) / 2) < 3 and \
-                                                abs((team_candidate[1] + (x1_big + x2_big) / 2) / 2 - big_w_index) < 10:
+                                        if abs(team_candidate[2] - (y1_big + y2_big)/2) < 3 and\
+                                                abs((team_candidate[1] + (x1_big + x2_big)/2)/2 - big_w_index) < 10:
                                             two_teams = True
-                                            if (x1_big + x2_big) / 2 > big_w_index:
+                                            if (x1_big + x2_big)/2 > big_w_index:
                                                 right_team = team1[0]
                                                 left_team = team_candidate[0]
                                                 # 确定队名的x坐标（中心）用于后面排除太过边缘的字符串
                                                 left_team_x = team_candidate[1]
-                                                right_team_x = (x1_big + x2_big) / 2
+                                                right_team_x = (x1_big + x2_big)/2
                                             if x2_big < big_w_index:
                                                 left_team = team1[0]
                                                 right_team = team_candidate[0]
@@ -297,36 +292,35 @@ def get_frames(video_dir):
                                             team_y1 = y1_big
                                             team_y2 = y2_big
                                             break
-                                team_candidates_list.append([team1[0], (x1_big + x2_big) / 2, (y1_big + y2_big) / 2])
+                                team_candidates_list.append([team1[0], (x1_big + x2_big)/2, (y1_big + y2_big)/2])
                                 continue
-                            if (x1_big + x2_big) / 2 < big_w_index:
+                            if (x1_big + x2_big)/2 < big_w_index:
                                 left_big_temp_result.append([strr, x1_big, x2_big, y1_big, y2_big])
                             else:
                                 right_big_temp_result.append([strr, x1_big, x2_big, y1_big, y2_big])
 
+
+
                         # 检测出了两个球队名，说明是大字幕，此时team_y1，team_y2都有了
                         if two_teams:
                             if left_big_temp_result:
-                                sorted_left_big_result = sorted(left_big_temp_result,
-                                                                key=lambda student: (student[3], student[2]))
+                                sorted_left_big_result = sorted(left_big_temp_result, key=lambda student: (student[3], student[2]))
                                 yy1 = sorted_left_big_result[0][3]
                                 yy2 = sorted_left_big_result[0][4]
                                 left_oneline_0 = OneLine(sorted_left_big_result[0][3], sorted_left_big_result[0][4])
                                 line_index = 0
                                 for ii, [strr, x1_big, x2_big, y1_big, y2_big] in enumerate(sorted_left_big_result):
-                                    if abs((y1_big + y2_big) / 2 - (team_y1 + team_y2) / 2) < 4 or left_team_x - (
-                                            x1_big + x2_big) / 2 > 100:
+                                    if abs((y1_big + y2_big)/2 - (team_y1 + team_y2)/2) < 4 or left_team_x - (x1_big + x2_big)/2 > 100:
                                         continue
 
                                     # 循环建立四个对象，locals()函数可以将字符串转换为变量名！
                                     # 具体的操作和含义我并不清楚，大家可以自行百度～
-                                    if abs((yy1 + yy2) / 2 - (y1_big + y2_big) / 2) > 3:
+                                    if abs((yy1 + yy2)/2 - (y1_big + y2_big)/2) > 3:
                                         left_line.append(locals()['left_oneline_' + str(line_index)])
                                         del locals()['left_oneline_' + str(line_index)]
                                         line_index += 1
-                                        locals()['left_oneline_' + str(line_index)] = OneLine(
-                                            sorted_left_big_result[ii][3],
-                                            sorted_left_big_result[ii][4])
+                                        locals()['left_oneline_' + str(line_index)] = OneLine(sorted_left_big_result[ii][3],
+                                                                                         sorted_left_big_result[ii][4])
                                         yy1 = y1_big
                                         yy2 = y2_big
 
@@ -334,26 +328,26 @@ def get_frames(video_dir):
                                 left_line.append(locals()['left_oneline_' + str(line_index)])
                                 del locals()['left_oneline_' + str(line_index)]
 
+
+
                             if right_big_temp_result:
-                                sorted_right_big_result = sorted(right_big_temp_result,
-                                                                 key=lambda student: (student[3], student[2]))
+                                sorted_right_big_result = sorted(right_big_temp_result, key=lambda student: (student[3], student[2]))
                                 yy1 = sorted_right_big_result[0][3]
                                 yy2 = sorted_right_big_result[0][4]
                                 right_oneline_0 = OneLine(sorted_right_big_result[0][3], sorted_right_big_result[0][4])
                                 line_index = 0
                                 for ii, [strr, x1_big, x2_big, y1_big, y2_big] in enumerate(sorted_right_big_result):
-                                    if abs((y1_big + y2_big) / 2 - (team_y1 + team_y2) / 2) < 4 or (
-                                            x1_big + x2_big) / 2 - right_team_x > 100:
+                                    if abs((y1_big + y2_big)/2 - (team_y1 + team_y2)/2) < 4 or (x1_big + x2_big)/2 - right_team_x > 100:
                                         continue
 
                                     # 循环建立四个对象，locals()函数可以将字符串转换为变量名！
-                                    if abs((yy1 + yy2) / 2 - (y1_big + y2_big) / 2) > 3:
+                                    # 具体的操作和含义我并不清楚，大家可以自行百度～
+                                    if abs((yy1 + yy2)/2 - (y1_big + y2_big)/2) > 3:
                                         right_line.append(locals()['right_oneline_' + str(line_index)])
                                         del locals()['right_oneline_' + str(line_index)]
                                         line_index += 1
-                                        locals()['right_oneline_' + str(line_index)] = OneLine(
-                                            sorted_right_big_result[ii][3],
-                                            sorted_right_big_result[ii][4])
+                                        locals()['right_oneline_' + str(line_index)] = OneLine(sorted_right_big_result[ii][3],
+                                                                                         sorted_right_big_result[ii][4])
                                         yy1 = y1_big
                                         yy2 = y2_big
 
@@ -369,6 +363,8 @@ def get_frames(video_dir):
                                 right_line, -1, player_name_dic, big_candidate, score_time_dic, i,
                                 Player_Time_list,
                                 big_flag)
+
+
 
                     # 如果检测出比分，则帧数+1检测下一帧，否则帧数+200
                     if goal_flag:
@@ -481,11 +477,6 @@ def get_frames(video_dir):
                             if player_name_dic[i_playername] < 5:
                                 Player_Time_list[i].use = 0
 
-                Summary_Json = {}
-                Summary_Json['teamA'] = left_team
-                Summary_Json['teamB'] = right_team
-                random_events = {}
-                goal_event = []
                 for i in range(nn):
                     if Player_Time_list[i].use:
                         name = Player_Time_list[i].playername
@@ -496,14 +487,8 @@ def get_frames(video_dir):
                         print("name:{}  team:{}".format(name, team))
                         print(Player_Time_list[i].goaltime)
 
-                        gv = {'team': team, 'player': name, 'goal_time': Player_Time_list[i].goaltime}
-                        goal_event.append(gv)
 
-                random_events['goal_event'] = goal_event
-                Summary_Json['random_events'] = random_events
-                with open('event_json' + '.json', 'w') as fd:
-                    json.dump(Summary_Json, fd)
-                print_json(Summary_Json)
+
 
                 # 把big_candidate里的值（set）取交集，如果不为空，就在player_name_dic里面看谁的key次数多
                 # 次数少的key就在big_candidate中删除

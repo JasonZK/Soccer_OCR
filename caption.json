@@ -1,0 +1,90 @@
+{
+  "teamA" : "China",
+  "teamB" : "America",
+
+  "Static_properties" : {
+      "frame": "10728",
+      "game time" : "56'",
+      "video time" : "11",
+      "current score" : {
+        "teamA_score" : 6,
+        "teamB_score" : 1
+      }
+  },
+
+  "random events" : {
+      "person": {
+          "name": "Messi",
+          "introduction": "one of the greatest football player"
+      },
+
+      "goal event": {
+          "team" : "Science",
+          "player" : "Ding",
+          "description" : "normal",
+          "new score" : {
+            "teamA_score" : 6,
+            "teamB_score" : 1
+          }
+      },
+
+      "substitution" : {
+          "team" : "Science",
+          "up" : "playerA",
+          "down" : "playerB"
+      },
+
+      "statistics" : [
+        {"item" : "processing rate", "teamA" : "45", "teamB" : "55"},
+        {"item" : "goal rate", "teamA" : "45", "teamB" : "55"},
+        {"item" : "shot rate", "teamA" : "45", "teamB" : "55"}
+      ]
+
+  },
+
+
+  "Final result" : {
+      "final_score" : {
+          "teamA_score" : 6,
+          "teamB_score" : 1
+      },
+
+      "teamA" : [
+        {
+          "name": "AAA",
+          "goal": [
+            {"goal_time" : "14'", "goal_type" : "normal"},
+            {"goal_time" : "14'", "goal_type" : "normal"}
+          ]
+        },
+        {
+          "name": "BBB",
+          "goal": [
+            {"goal_time" : "14'", "goal_type" : "normal"},
+            {"goal_time" : "14'", "goal_type" : "normal"}
+          ]
+        }
+      ],
+
+      "teamB" : [
+        {
+          "name": "CCC",
+          "goal": [
+            {"goal_time" : "14'", "goal_type" : "normal"},
+            {"goal_time" : "14'", "goal_type" : "normal"}
+          ]
+        },
+        {
+          "name": "DDD",
+          "goal": [
+            {"goal_time" : "14'", "goal_type" : "normal"},
+            {"goal_time" : "14'", "goal_type" : "normal"}
+          ]
+        }
+      ]
+  }
+
+
+
+
+}
